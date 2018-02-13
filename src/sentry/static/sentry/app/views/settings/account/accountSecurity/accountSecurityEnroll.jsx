@@ -8,7 +8,7 @@ import {
   addErrorMessage,
   addMessage,
   addSuccessMessage,
-} from '../../../../actionCreators/settingsIndicator';
+} from '../../../../actionCreators/indicator';
 import {t} from '../../../../locale';
 import AsyncView from '../../../asyncView';
 import Button from '../../../../components/buttons/button';
@@ -139,7 +139,6 @@ class AccountSecurityEnroll extends AsyncView {
       // Send null OTP if we are submitting OTP verification
       // Otherwise API will think that we are on verification step (e.g. after submitting phone)
       otp: hasSentCode ? this._form.otp || '' : undefined,
-      // ...((dataModel && dataModel.toJSON()) || {}),
       secret: authenticator.secret,
     };
 
@@ -208,7 +207,7 @@ class AccountSecurityEnroll extends AsyncView {
 
     let data = {
       ...this._form,
-      ...((dataModel && dataModel.toJSON()) || {}),
+      ...(dataModel || {}),
       secret: authenticator.secret,
     };
 

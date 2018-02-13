@@ -37,7 +37,6 @@ export default class Form extends React.Component {
     requireChanges: false,
     allowUndo: false,
     saveOnBlur: false,
-    onSubmit: () => {},
     onSubmitSuccess: () => {},
     onSubmitError: () => {},
   };
@@ -90,7 +89,11 @@ export default class Form extends React.Component {
       return;
     }
 
-    this.props.onSubmit(this.model.getData(), this.onSubmitSuccess, this.onSubmitError);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(this.model.getData(), this.onSubmitSuccess, this.onSubmitError);
+    } else {
+      this.model.saveForm();
+    }
   };
 
   onSubmitSuccess = data => {

@@ -13,6 +13,7 @@ export default class Form extends React.Component {
     onSubmit: PropTypes.func,
     onSubmitSuccess: PropTypes.func,
     onSubmitError: PropTypes.func,
+    onFieldChange: PropTypes.func,
     submitDisabled: PropTypes.bool,
     submitLabel: PropTypes.string,
     footerClass: PropTypes.string,
@@ -54,6 +55,7 @@ export default class Form extends React.Component {
       apiMethod,
       onSubmitSuccess,
       onSubmitError,
+      onFieldChange,
       initialData,
       model,
       allowUndo,
@@ -63,6 +65,7 @@ export default class Form extends React.Component {
     this.model.setInitialData(initialData);
     this.model.setFormOptions({
       allowUndo,
+      onFieldChange,
       onSubmitSuccess,
       onSubmitError,
       saveOnBlur,

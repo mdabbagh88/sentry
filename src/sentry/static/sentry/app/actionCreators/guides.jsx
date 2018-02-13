@@ -19,3 +19,28 @@ export function registerAnchor(anchor) {
 export function unregisterAnchor(anchor) {
   GuideActions.unregisterAnchor(anchor);
 }
+
+export function nextStep() {
+  GuideActions.nextStep();
+}
+
+export function markUseful(guideId, useful) {
+  api.request('/assistant/', {
+    method: 'PUT',
+    data: {
+      guide_id: guideId,
+      status: 'viewed',
+      useful,
+    },
+  });
+}
+
+export function dismiss(guideId) {
+  api.request('/assistant/', {
+    method: 'PUT',
+    data: {
+      guide_id: guideId,
+      status: 'dismissed',
+    },
+  });
+}

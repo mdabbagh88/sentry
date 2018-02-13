@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import _ from 'lodash';
 import createReactClass from 'create-react-class';
 import $ from 'jquery';
 import ExternalLink from '../externalLink';
@@ -29,22 +30,15 @@ const SupportDrawer = createReactClass({
     evt.preventDefault();
   },
 
-  handleChange(evt) {
-    evt.preventDefault();
-    let term = evt.currentTarget.value;
-
-    this.setState({
-      inputVal: evt.currentTarget.value,
-    });
-
-    if (term == '') {
+  search: _.debounce(function() {
+    if (this.state.inputVal == '') {
       return;
     }
     $.ajax({
       method: 'GET',
       url: 'https://rigidsearch.getsentry.net/api/search',
       data: {
-        q: term,
+        q: this.state.inputVal,
         page: 1,
         section: 'hosted',
       },
@@ -56,12 +50,16 @@ const SupportDrawer = createReactClass({
       method: 'GET',
       url: 'https://sentry.zendesk.com/api/v2/help_center/articles/search.json',
       data: {
-        query: term,
+        query: this.state.inputVal,
       },
       success: data => {
         this.setState({helpcenterResults: data.results});
       },
     });
+  }, 300),
+
+  handleChange(evt) {
+    this.setState({inputVal: evt.currentTarget.value}, this.search);
   },
 
   renderDocsResults() {

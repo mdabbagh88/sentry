@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React from 'react';
 import $ from 'jquery';
-
 import createReactClass from 'create-react-class';
 import Reflux from 'reflux';
+import {registerAnchor, unregisterAnchor} from '../../actionCreators/guides';
 import GuideStore from '../../stores/guideStore';
-import GuideActions from '../../actions/guideActions';
 
 // A guide anchor provides a ripple-effect on an element on the page to draw attention
 // to it. Guide anchors register with the guide store, which uses this information to
@@ -26,7 +25,7 @@ const GuideAnchor = createReactClass({
   },
 
   componentDidMount() {
-    GuideActions.registerAnchor(this);
+    registerAnchor(this);
   },
 
   componentDidUpdate(prevProps, prevState) {
@@ -41,7 +40,7 @@ const GuideAnchor = createReactClass({
   },
 
   componentWillUnmount() {
-    GuideActions.unregisterAnchor(this);
+    unregisterAnchor(this);
   },
 
   onGuideStateChange(data) {

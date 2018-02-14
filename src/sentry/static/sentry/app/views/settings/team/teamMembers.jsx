@@ -1,9 +1,8 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import {Link} from 'react-router';
 
 import ApiMixin from '../../../mixins/apiMixin';
-import Avatar from '../../../components/avatar';
+import UserBadge from '../../../components/userBadge';
 import Button from '../../../components/buttons/button';
 import LoadingError from '../../../components/loadingError';
 import LoadingIndicator from '../../../components/loadingIndicator';
@@ -108,15 +107,7 @@ const TeamMembers = createReactClass({
               return (
                 <tr key={i}>
                   <td className="table-user-info">
-                    <Avatar user={member} size={80} />
-                    <h5>
-                      <Link
-                        to={`/settings/organization/${params.orgId}/members/${member.id}`}
-                      >
-                        {member.email}
-                      </Link>
-                    </h5>
-                    {member.email}
+                    <UserBadge user={member} orgId={params.orgId} />
                   </td>
                   <td>{member.roleName}</td>
                 </tr>

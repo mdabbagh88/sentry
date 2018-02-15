@@ -95,6 +95,8 @@ class DetailedOrganizationSerializer(OrganizationSerializer):
         )
 
         feature_list = []
+        if features.has('organizations:assistant', obj, actor=user):
+            feature_list.append('assistant')
         if features.has('organizations:sso', obj, actor=user):
             feature_list.append('sso')
         if features.has('organizations:onboarding', obj, actor=user) and \

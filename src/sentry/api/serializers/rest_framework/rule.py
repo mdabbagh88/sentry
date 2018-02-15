@@ -58,7 +58,7 @@ class RuleNodeField(serializers.WritableField):
 
 class RuleSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=64)
-    environment = serializers.CharField(max_length=64, required=False)
+    environment = serializers.CharField(max_length=64, required=False, allow_none=True)
     actionMatch = serializers.ChoiceField(
         choices=(('all', 'all'), ('any', 'any'), ('none', 'none'), )
     )
@@ -78,7 +78,7 @@ class RuleSerializer(serializers.Serializer):
         try:
             attrs['environment'] = Environment.get_for_organization_id(
                 self.context['project'].organization_id,
-                name,
+                '' if name == 'none' else name,
             ).id
         except Environment.DoesNotExist:
             raise serializers.ValidationError(u'This environment has not been created.')

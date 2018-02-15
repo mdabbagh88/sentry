@@ -78,7 +78,7 @@ class RuleSerializer(serializers.Serializer):
         try:
             attrs['environment'] = Environment.get_for_organization_id(
                 self.context['project'].organization_id,
-                '' if name == 'none' else name,
+                Environment.from_api_name(name),
             ).id
         except Environment.DoesNotExist:
             raise serializers.ValidationError(u'This environment has not been created.')

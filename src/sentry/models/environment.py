@@ -92,3 +92,11 @@ class Environment(Model):
                 EnvironmentProject.objects.create(project=project, environment=self)
         except IntegrityError:
             pass
+
+    @staticmethod
+    def get_api_name(name):
+        return name if name != '' else 'none'
+
+    @staticmethod
+    def from_api_name(name):
+        return name if name != 'none' else ''

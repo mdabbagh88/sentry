@@ -54,8 +54,6 @@ class RuleSerializer(Serializer):
             obj.label,
             'dateCreated':
             obj.date_added,
-            'environment': (
-                'none' if environment.name == '' else environment.name
-            ) if environment is not None else None,
+            'environment': Environment.get_api_name(environment.name) if environment is not None else None,
         }
         return d

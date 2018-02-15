@@ -19,7 +19,7 @@ class GroupEnvironmentDetailsEndpoint(GroupEndpoint):
                 projects=project,
                 organization_id=project.organization_id,
                 # XXX(dcramer): we have no great way to pass the empty env
-                name='' if environment == 'none' else environment,
+                name=Environment.from_api_name(environment),
             )
         except Environment.DoesNotExist:
             raise ResourceDoesNotExist

@@ -7,7 +7,6 @@ from .manager import *  # NOQA
 default_manager = FeatureManager()  # NOQA
 default_manager.add('auth:register')
 default_manager.add('organizations:api-keys', OrganizationFeature)  # NOQA
-default_manager.add('organizations:assistant', OrganizationFeature)  # NOQA
 default_manager.add('organizations:create')
 default_manager.add('organizations:sso', OrganizationFeature)  # NOQA
 default_manager.add('organizations:sso-saml2', OrganizationFeature)  # NOQA
@@ -34,6 +33,7 @@ default_manager.add('projects:discard-groups', ProjectFeature)  # NOQA
 default_manager.add('projects:custom-inbound-filters', ProjectFeature)  # NOQA
 default_manager.add('projects:minidump', ProjectFeature)  # NOQA
 default_manager.add('organizations:environments', OrganizationFeature)  # NOQA
+default_manager.add('user:assistant')
 
 # expose public api
 add = default_manager.add

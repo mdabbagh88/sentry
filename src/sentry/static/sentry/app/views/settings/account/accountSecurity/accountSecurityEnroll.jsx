@@ -8,7 +8,7 @@ import {
   addErrorMessage,
   addMessage,
   addSuccessMessage,
-} from '../../../../actionCreators/settingsIndicator';
+} from '../../../../actionCreators/indicator';
 import {t} from '../../../../locale';
 import AsyncView from '../../../asyncView';
 import Button from '../../../../components/buttons/button';
@@ -217,7 +217,7 @@ class AccountSecurityEnroll extends AsyncView {
 
     let data = {
       ...this._form,
-      ...((dataModel && dataModel.toJSON()) || {}),
+      ...(dataModel || {}),
       secret: authenticator.secret,
     };
 

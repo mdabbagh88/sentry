@@ -5,7 +5,7 @@ import {Box, Flex} from 'grid-emotion';
 import React from 'react';
 import styled from 'react-emotion';
 
-import {addErrorMessage} from '../../../../actionCreators/settingsIndicator';
+import {addErrorMessage} from '../../../../actionCreators/indicator';
 import {t} from '../../../../locale';
 import AsyncView from '../../../asyncView';
 import Button from '../../../../components/buttons/button';
@@ -18,6 +18,7 @@ import PanelItem from '../../components/panelItem';
 import SettingsPageHeader from '../../components/settingsPageHeader';
 import TextBlock from '../../components/text/textBlock';
 import RemoveConfirm from './components/removeConfirm';
+import PasswordForm from '../passwordForm';
 
 const ENDPOINT = '/users/me/authenticators/';
 
@@ -59,6 +60,9 @@ class AccountSecurity extends AsyncView {
     return (
       <div>
         <SettingsPageHeader title="Security" />
+
+        <PasswordForm />
+
         <Panel>
           <PanelHeader>
             <Box>{t('Two Factor Authentication')}</Box>

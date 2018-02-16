@@ -10,10 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'react-emotion';
 
-import {
-  addErrorMessage,
-  addSuccessMessage,
-} from '../../../../actionCreators/settingsIndicator';
+import {addErrorMessage, addSuccessMessage} from '../../../../actionCreators/indicator';
 import {t} from '../../../../locale';
 import AsyncView from '../../../asyncView';
 import Button from '../../../../components/buttons/button';
@@ -107,6 +104,10 @@ class AccountSecurityDetails extends AsyncView {
             }
           )
     );
+  };
+
+  handleRemoveU2fDevice = () => {
+    // TODO(billy): Implement me
   };
 
   handleRegenerateBackupCodes = () => {

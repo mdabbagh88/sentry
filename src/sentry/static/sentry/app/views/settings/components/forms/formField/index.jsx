@@ -17,6 +17,7 @@ import FormFieldWrapper from './formFieldWrapper';
 import FormState from '../../../../../components/forms/state';
 import InlineSvg from '../../../../../components/inlineSvg';
 import Spinner from '../spinner';
+import Tooltip from '../../../../../components/tooltip';
 import returnButton from '../returnButton';
 
 // This wraps Control + ControlError message
@@ -307,17 +308,19 @@ class FormField extends React.Component {
                 }}
               </Observer>
 
-              {isDisabled &&
-                disabledReason && (
-                  <span className="disabled-indicator tip" title={disabledReason}>
-                    <span className="icon-question" />
-                  </span>
-                )}
-
               {showReturnButton && this.state.showReturnButton && <ReturnButtonStyled />}
             </FormFieldControlStyled>
 
             <FormFieldControlState justify="center" align="center">
+              {isDisabled &&
+                disabledReason && (
+                  <Tooltip title={disabledReason}>
+                    <span className="disabled-indicator">
+                      <span className="icon-question" />
+                    </span>
+                  </Tooltip>
+                )}
+
               <Observer>
                 {() => {
                   let isSaving = model.getFieldState(this.props.name, FormState.SAVING);

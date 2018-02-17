@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountEmails renders with maxRate and maxRateInterval set 1`] = `
+.glamor-0 {
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+<TextBlock>
+  <div
+    className="glamor-0 glamor-1"
+  >
+    Your account is limited to a maximum of [maxRate] events per [maxRateInterval] seconds.
+  </div>
+</TextBlock>
+`;

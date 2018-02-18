@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TeamSettings from 'app/views/settings/team/teamSettings';
+import TeamSettings from 'app/views/settings/team/teamSettings.old';
 
 const childContextTypes = {
   organization: PropTypes.object,
@@ -10,12 +10,11 @@ const childContextTypes = {
   location: PropTypes.object,
 };
 
-describe('TeamSettings', function() {
+describe('TeamSettings (Old)', function() {
   describe('render()', function() {
-    let wrapper;
-    beforeEach(function() {
+    it('renders', function() {
       let team = TestStubs.Team();
-      wrapper = shallow(
+      let wrapper = shallow(
         <TeamSettings
           routes={[]}
           params={{orgId: 'org', teamId: team.slug}}
@@ -25,28 +24,11 @@ describe('TeamSettings', function() {
         {
           context: {
             router: TestStubs.router(),
-            organization: {
-              id: '1337',
-              access: [],
-            },
           },
           childContextTypes,
         }
       );
-    });
 
-    it('renders', function() {
-      wrapper.update();
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    it('renders with remove team', function() {
-      wrapper.setContext({
-        organization: {
-          id: '1337',
-          access: ['team:admin'],
-        },
-      });
       wrapper.update();
       expect(wrapper).toMatchSnapshot();
     });

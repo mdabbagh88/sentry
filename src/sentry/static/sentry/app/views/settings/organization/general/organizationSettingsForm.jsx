@@ -48,6 +48,7 @@ const NewOrganizationSettingsForm = createReactClass({
 
     return (
       <Form
+        className="ref-organization-settings"
         apiMethod="PUT"
         apiEndpoint={`/organizations/${orgId}/`}
         saveOnBlur

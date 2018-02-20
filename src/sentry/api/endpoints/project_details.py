@@ -258,7 +258,8 @@ class ProjectDetailsEndpoint(ProjectEndpoint):
                         'detail': ['The new team is not found.']
                     }, status=400
                 )
-            old_team_id = project.team_id
+            # TODO(jess): update / deprecate this functionality
+            old_team_id = project.teams.values_list('id', flat=True).first()
             project.team = team_list[0]
             changed = True
 

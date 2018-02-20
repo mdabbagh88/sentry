@@ -77,7 +77,6 @@ import ProjectInstallPlatform from './views/projectInstall/platform';
 import ProjectKeyDetails from './views/projectKeyDetails';
 import ProjectKeys from './views/projectKeys';
 import ProjectPicker from './views/settings/components/projectPicker';
-import ProjectProcessingIssues from './views/projectProcessingIssues';
 import ProjectIssueTracking from './views/projectIssueTracking';
 import ProjectReleaseTracking from './views/projectReleaseTracking';
 import ProjectReleases from './views/projectReleases';
@@ -338,7 +337,9 @@ const projectSettingsRoutes = [
     key="processing-issues/"
     path="processing-issues/"
     name="Processing Issues"
-    component={errorHandler(ProjectProcessingIssues)}
+    componentPromise={() =>
+      import(/*webpackChunkName: "ProjectProcessingIssues"*/ './views/settings/project/projectProcessingIssues')}
+    component={errorHandler(LazyLoad)}
   />,
   <Route
     key="filters/"

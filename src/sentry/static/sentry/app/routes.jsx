@@ -62,7 +62,6 @@ import ProjectAlertSettings from './views/projectAlertSettings';
 import ProjectEnvironments from './views/projectEnvironments';
 import ProjectTags from './views/projectTags';
 import ProjectChooser from './views/projectChooser';
-import ProjectCspSettings from './views/projectCspSettings';
 import ProjectDashboard from './views/projectDashboard';
 import ProjectDataForwarding from './views/projectDataForwarding';
 import ProjectDebugSymbols from './views/projectDebugSymbols';
@@ -368,7 +367,9 @@ const projectSettingsRoutes = [
     key="csp/"
     path="csp/"
     name="CSP Reports"
-    component={errorHandler(ProjectCspSettings)}
+    componentPromise={() =>
+      import(/*webpackChunkName: "ProjectCspReports"*/ './views/settings/project/projectCspReports')}
+    component={errorHandler(LazyLoad)}
   />,
   <Route
     key="plugins/"

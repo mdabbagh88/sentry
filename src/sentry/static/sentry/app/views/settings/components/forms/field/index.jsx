@@ -127,10 +127,12 @@ class Field extends React.Component {
     return (
       <FieldWrapper inline={inline} highlighted={highlighted}>
         <FieldDescription inline={inline} htmlFor={id}>
-          <FieldLabel>
-            {label} {required && <FieldRequiredBadge />}
-          </FieldLabel>
-          <FieldHelp>{help}</FieldHelp>
+          {label && (
+            <FieldLabel>
+              {label} {required && <FieldRequiredBadge />}
+            </FieldLabel>
+          )}
+          {help && <FieldHelp>{help}</FieldHelp>}
         </FieldDescription>
 
         {Control}
